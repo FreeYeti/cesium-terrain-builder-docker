@@ -1,0 +1,5 @@
+#!/bin/bash
+mkdir -p /data/terrain
+gdalbuildvrt /data/tiles.vrt dem.tif
+ctb-tile -f Mesh -C -N -o /data/terrain tiles.vrt
+ctb-tile -f Mesh -C -N -l -o /data/terrain tiles.vrt

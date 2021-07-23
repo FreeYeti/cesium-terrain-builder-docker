@@ -47,17 +47,8 @@ WORKDIR /data
 # Setup runtime packages and env
 RUN set -x && apt-get update && \
   apt-get install -y --no-install-recommends $RUNTIME_PACKAGES && \
-  ldconfig && \
-  echo 'alias ..="cd .."' >> ~/.bashrc && \
-  echo 'alias l="ls -CF --group-directories-first --color=auto"' >> ~/.bashrc && \
-  echo 'alias ll="ls -lFh --group-directories-first --color=auto"' >> ~/.bashrc && \
-  echo 'alias lla="ls -laFh --group-directories-first  --color=auto"' >> ~/.bashrc
+  ldconfig
+
+COPY ./tile /usr/local/bin/tile
 
 CMD ["bash"]
-
-# Labels ######################################################################
-LABEL maintainer="Bruno Willenborg"
-LABEL maintainer.email="b.willenborg(at)tum.de"
-LABEL maintainer.organization="Chair of Geoinformatics, Technical University of Munich (TUM)"
-LABEL source.repo="https://github.com/tum-gis/https://github.com/tum-gis/cesium-terrain-builder-docker"
-LABEL docker.image="tumgis/ctb-quantized-mesh"
